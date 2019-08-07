@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_graphql import GraphQLView
+from flask_migrate import Migrate, MigrateCommand
 
 from todo import settings
 from todo.api.schema import schema
@@ -17,6 +18,8 @@ def create_app(settings_override=None):
 
 def config(app, settings_override):
     app.config["DEBUG"] = settings.DEBUG
+    app.config["SQLALCHEMY_DATABASE_URI"] = settings.DATABASE_URI
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = settings.SQLALCHEMY_TRACK_MODIFICATIONS
 
     if settings_override:
         app.config.update(settings_override)
@@ -37,3 +40,4 @@ def routes(app):
 
 def extensions(app):
     db.init_app(app)
+    Migrate(app, db)

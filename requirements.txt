@@ -3,6 +3,7 @@ Flask-Cors==3.0.8
 Flask-GraphQL==2.0.0
 Flask-JWT-Extended==3.21.0
 Flask-SQLAlchemy==2.4.0
+Flask-Migrate==2.5.2
 graphene==2.1.7
 graphene-sqlalchemy==2.2.1
 graphql-core==2.2.1
