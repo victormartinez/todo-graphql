@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_graphql import GraphQLView
-from flask_migrate import Migrate, MigrateCommand
+from flask_migrate import Migrate
 
 from todo import settings
 from todo.api.schema import schema
-from todo.extensions import db
+from todo.extensions import db, migrate
 
 
 def create_app(settings_override=None):
@@ -40,4 +40,6 @@ def routes(app):
 
 def extensions(app):
     db.init_app(app)
-    Migrate(app, db)
+    migrate.init_app(app, db)
+
+    from todo.api import models
