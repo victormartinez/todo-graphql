@@ -39,7 +39,8 @@ def routes(app):
 
 
 def extensions(app):
+    from todo.api import models
+
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from todo.api import models
